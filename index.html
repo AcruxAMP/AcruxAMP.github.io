@@ -1,10 +1,25 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="ja">
   <head>
-    <title>Acrux</title>
     <meta charset="UTF-8" />
-  </head>
+    <link rel="icon" type="image/png" href="/icons/icon-192.png" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#ffffff" />
+    <title>Acrux AMP</title>
+    <script>
+      // GitHub Pages SPA routing: restore path from query param
+      (function () {
+        const p = new URLSearchParams(window.location.search).get('p');
+        if (p) {
+          window.history.replaceState(null, '', p);
+        }
+      })();
+    </script>
+    <script type="module" crossorigin src="/assets/index-BQgePzXd.js"></script>
+    <link rel="modulepreload" crossorigin href="/assets/midiStore-C2Jz-SyA.js">
+    <link rel="stylesheet" crossorigin href="/assets/index-w80YOFZy.css">
+  <link rel="manifest" href="/manifest.webmanifest"><script id="vite-plugin-pwa:register-sw" src="/registerSW.js"></script></head>
   <body>
-    <h1>Acrux AMP - A cappella MIDI Player</h1>
+    <div id="root"></div>
   </body>
 </html>
