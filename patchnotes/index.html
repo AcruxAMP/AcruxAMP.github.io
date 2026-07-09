@@ -1,0 +1,164 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>パッチノート — Acrux AMP</title>
+  <link rel="icon" type="image/png" href="/icons/icon-192.png" />
+  <script>
+    // アプリのテーマ設定（localStorage）に追従する。未設定ならシステム設定
+    (function () {
+      try {
+        var saved = JSON.parse(localStorage.getItem('acrux-app') || '{}');
+        var t = saved.state && saved.state.theme;
+        var dark = t === 'dark' ||
+          ((!t || t === 'system') && matchMedia('(prefers-color-scheme: dark)').matches);
+        if (dark) document.documentElement.setAttribute('data-theme', 'dark');
+      } catch (e) { /* テーマ未設定時はライト */ }
+    })();
+  </script>
+  <style>
+    :root {
+      --bg: #ffffff;
+      --fg: #1f2937;
+      --muted: #6b7280;
+      --border: #e5e7eb;
+      --primary: #4f46e5;
+      --primary-fg: #ffffff;
+      --badge-bg: #eef2ff;
+    }
+    [data-theme="dark"] {
+      --bg: #1d232a;
+      --fg: #e5e7eb;
+      --muted: #9ca3af;
+      --border: #374151;
+      --primary: #6366f1;
+      --primary-fg: #ffffff;
+      --badge-bg: #312e81;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      background: var(--bg);
+      color: var(--fg);
+      font-family: system-ui, -apple-system, "Segoe UI", Roboto, "Hiragino Sans",
+        "Noto Sans JP", sans-serif;
+      line-height: 1.7;
+    }
+    .container { max-width: 640px; margin: 0 auto; padding: 16px 20px 48px; }
+    header {
+      display: flex; align-items: center; justify-content: space-between;
+      gap: 12px; padding: 8px 0 16px; border-bottom: 1px solid var(--border);
+    }
+    header .brand { font-size: 1.1rem; font-weight: 700; letter-spacing: -0.01em; }
+    .open-app {
+      display: inline-block; background: var(--primary); color: var(--primary-fg);
+      text-decoration: none; font-size: 0.85rem; font-weight: 600;
+      padding: 8px 16px; border-radius: 9999px; white-space: nowrap;
+    }
+    .open-app:active { opacity: 0.85; }
+    h1 { font-size: 1.4rem; margin: 24px 0 4px; }
+    .subtitle { color: var(--muted); font-size: 0.85rem; margin: 0 0 8px; }
+    section.release {
+      border: 1px solid var(--border); border-radius: 12px;
+      padding: 4px 20px 12px; margin: 20px 0;
+    }
+    h2 { font-size: 1.05rem; margin: 16px 0 2px; }
+    .date { color: var(--muted); font-size: 0.8rem; margin: 0 0 4px; }
+    .badge {
+      display: inline-block; background: var(--badge-bg); color: var(--primary);
+      font-size: 0.7rem; font-weight: 700; padding: 1px 8px; border-radius: 9999px;
+      vertical-align: 2px; margin-left: 6px;
+    }
+    h3 { font-size: 0.85rem; color: var(--muted); text-transform: uppercase;
+         letter-spacing: 0.05em; margin: 16px 0 4px; }
+    ul { margin: 4px 0; padding-left: 20px; }
+    li { margin: 3px 0; font-size: 0.9rem; }
+    footer {
+      margin-top: 32px; padding-top: 16px; border-top: 1px solid var(--border);
+      text-align: center; color: var(--muted); font-size: 0.8rem;
+    }
+    footer a { color: var(--primary); }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <header>
+      <span class="brand">Acrux AMP</span>
+      <a class="open-app" href="/">アプリを開く</a>
+    </header>
+
+    <h1>パッチノート</h1>
+    <p class="subtitle">アカペラ練習用MIDIプレーヤー Acrux AMP の更新履歴</p>
+
+    <section class="release">
+      <h2>v0.1.0-beta.2<span class="badge">β</span></h2>
+      <p class="date">2026-07-09</p>
+
+      <h3>機能</h3>
+      <ul>
+        <li>ダークテーマ・ライトテーマに対応（デフォルトはシステム設定に追従、Settingsで切り替え）</li>
+        <li>音部記号に「自動（パートの音域から選択）」を追加し、デフォルトに設定。複数パート表示ではパートごとに最適な記号（ト音／ト音8vb／ヘ音）で表示</li>
+        <li>BPM設定に「元のBPMへリセット」ボタンを追加</li>
+        <li>曲の最後まで再生したら自動で停止</li>
+        <li>パッチノートページ（このページ）を追加</li>
+      </ul>
+
+      <h3>変更</h3>
+      <ul>
+        <li>複数パートの楽譜表示をトラック順に変更（メインパートを先頭に固定しない）</li>
+      </ul>
+
+      <h3>修正</h3>
+      <ul>
+        <li>BPMの変更が楽譜ごとの設定に保存されない問題を修正</li>
+      </ul>
+    </section>
+
+    <section class="release">
+      <h2>v0.1.0-beta.1<span class="badge">β</span></h2>
+      <p class="date">2026-07-08 — 初回β版</p>
+
+      <h3>機能</h3>
+      <ul>
+        <li>MIDIファイルの読み込み・保存・一覧管理（改名・削除）</li>
+        <li>再生・一時停止・シーク、BPM変更（再生中も即時反映）</li>
+        <li>パート別ミュート、メインパート強調（メイン／サブ音量の個別調整）</li>
+        <li>パーカッショントラックの再生</li>
+        <li>メトロノーム（1拍目アクセント付き・音量調節）</li>
+        <li>楽譜上の小節タップ／テンキーによる小節ジャンプ</li>
+        <li>楽譜表示: 横スクロールレイアウト・複数パート同時表示・再生位置ハイライトと自動スクロール・音部記号3種</li>
+        <li>歌詞表示（UTF-8 / Shift-JIS 自動判別、カラオケ形式対応、重複解消）</li>
+        <li>楽譜ごとの設定保存（BPM・ミュート・メインパート・表示パート）</li>
+        <li>PWA対応（オフライン動作）</li>
+      </ul>
+
+      <h3>楽譜エンジン</h3>
+      <ul>
+        <li>拍グリッド量子化によるリズム解析（16分／32分／8分3連／16分3連を自動判別、タイミングの揺れを補正）</li>
+        <li>連符（3連符）・タイ・付点音符（最小32分）</li>
+        <li>調号（♯系／♭系）と臨時記号（♯・♭・♮、小節内持続ルール対応）</li>
+      </ul>
+
+      <h3>修正</h3>
+      <ul>
+        <li>日本語トラック名・タイトルの文字化けを修正</li>
+        <li>メトロノームOFF中に音量を変更するとクリックが鳴り出す問題を修正</li>
+        <li>休符を挟んだ音符がビームで連結される問題を修正</li>
+        <li>ヘ音記号表示時に休符が五線から浮く問題を修正</li>
+      </ul>
+
+      <h3>既知の制約</h3>
+      <ul>
+        <li>5連符・7連符などの特殊連符は未対応</li>
+        <li>転調・拍子変更の表示は先頭のもののみ</li>
+        <li>強弱記号は表示されない（MIDIに記号情報が存在しないため）</li>
+      </ul>
+    </section>
+
+    <footer>
+      <a href="/">アプリを開く</a>
+    </footer>
+  </div>
+</body>
+</html>
