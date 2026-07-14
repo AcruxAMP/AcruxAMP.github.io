@@ -92,6 +92,23 @@
     <p class="subtitle">アカペラ練習用MIDIプレーヤー Acrux AMP の更新履歴</p>
 
     <section class="release">
+      <h2>v0.1.0-beta.7<span class="badge">β</span></h2>
+      <p class="date">2026-07-14</p>
+
+      <h3>修正</h3>
+      <ul>
+        <li>再生が不安定（音の途切れ・周波数のゆらぎ・BPMのドリフト・バックグラウンドで停止）だった問題を修正。実音声の出力経路をスピーカー直結に戻した</li>
+        <li>メトロノームの強調を1拍目のみに変更</li>
+      </ul>
+
+      <h3>変更</h3>
+      <ul>
+        <li>メディア通知・バックグラウンド維持を、実音声を通さない無音要素方式に変更（Android の通知コントロールは維持しつつ、音質に影響しない）</li>
+        <li>モバイルでの音切れ対策として同時発音数の上限を設定、波形の倍音数を調整</li>
+      </ul>
+    </section>
+
+    <section class="release">
       <h2>v0.1.0-beta.6<span class="badge">β</span></h2>
       <p class="date">2026-07-14</p>
 
