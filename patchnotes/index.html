@@ -92,6 +92,23 @@
     <p class="subtitle">アカペラ練習用MIDIプレーヤー Acrux AMP の更新履歴</p>
 
     <section class="release">
+      <h2>v0.1.0-beta.18<span class="badge">β</span></h2>
+      <p class="date">2026-11-05</p>
+
+      <h3>修正</h3>
+      <ul>
+        <li>MuseScore 4 で保存した一部の楽譜（.mscz）が表示されない問題を修正。MuseScore 4.70 以降のファイルは中に楽譜とスタイルなど複数のファイルを並べており、楽譜ではなくスタイルを読んでいました</li>
+        <li>MuseScore 4.70 以降の楽譜で、パート名が「Staff 1」などになり、ピアノなど2段譜の下段がヘ音記号にならない問題を修正</li>
+        <li>パート名は楽譜に書かれた名前（例「Lead」「Soprano」）を使うようにしました（以前は楽器の既定名になることがありました）。2段譜のパートで音のある段が1つだけなら番号を付けません</li>
+      </ul>
+
+      <h3>変更</h3>
+      <ul>
+        <li>ファイル一覧・タグの一覧で、MuseScore の楽譜（.mscz / .mscx）に「msc」のラベルを付けるようにしました</li>
+      </ul>
+    </section>
+
+    <section class="release">
       <h2>v0.1.0-beta.17<span class="badge">β</span></h2>
       <p class="date">2026-11-05</p>
 
